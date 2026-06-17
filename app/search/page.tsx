@@ -1,30 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
 
 export default function SearchPage() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
 
-  const products = [
-    {
-      id: 1,
-      name: "Atomic Habits",
-      price: 499,
-      seller: "ABC Book Store",
-    },
-    {
-      id: 2,
-      name: "Rich Dad Poor Dad",
-      price: 399,
-      seller: "Readers Hub",
-    },
-    {
-      id: 3,
-      name: "Think and Grow Rich",
-      price: 299,
-      seller: "Knowledge Mart",
-    },
-  ];
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
@@ -63,11 +56,7 @@ export default function SearchPage() {
                 ₹{product.price}
               </p>
 
-              <p className="text-gray-600 mt-2">
-                Seller: {product.seller}
-              </p>
-
-              <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg">
+              <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg">
                 Compare Prices
               </button>
             </div>
