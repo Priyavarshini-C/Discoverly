@@ -1,29 +1,29 @@
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import BookCard from "@/components/BookCard";
-import SearchBar from "@/components/SearchBar";
-import SectionTitle from "@/components/SectionTitle"
-import QuickAccessCard from "@/components/QuickAccessCard";
-import FeaturedBooks from "@/components/FeaturedBooks";
+import Footer from "@/components/Footer";
+import LocalBusinessesSection from "@/components/LocalBusinessesSection";
 import HeroSection from "@/components/HeroSection";
 import QuickAccessSection from "@/components/QuickAccessSection";
+import CategoriesSection from "@/components/CategoriesSection";
+import FeaturedProducts from "@/components/FeaturedProducts";
+import CompareProductsSection from "@/components/CompareProductsSection";
+import SearchSection from "@/components/SearchSection";
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-100 text-black">
       <Navbar />
 
-      {/* Hero Section */}
-     <HeroSection />
+      <HeroSection />
+      <SearchSection />
 
-      {/* Quick Access Cards */}
       <QuickAccessSection />
 
-      {/* Featured Books */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <SectionTitle title="Featured Books" />
+      <CategoriesSection />
 
-        <FeaturedBooks />
-      </section>
+      <FeaturedProducts />
+
+      <LocalBusinessesSection />
+
+      <CompareProductsSection />
 
       <Footer />
     </main>

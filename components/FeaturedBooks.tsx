@@ -1,4 +1,4 @@
-import BookCard from "./BookCard";
+import BookCard from "./ProductCard";
 
 export default function FeaturedBooks() {
   return (
