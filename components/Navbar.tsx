@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+<Link href="/compare">Compare</Link>
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b">
@@ -14,9 +14,14 @@ export default function Navbar() {
           <Link href="/compare">Compare</Link>
         </div>
 
+        <Link href="/register-seller">
+  Register Business
+</Link>
+
         <button className="bg-indigo-600 text-white px-5 py-2 rounded-xl">
           Get Started
         </button>
       </div>
     </nav>
   );
+}

@@ -1,39 +1,83 @@
+"use client";
+
+import { useState } from "react";
+
 export default function ComparePage() {
+  const [products] = useState([
+    {
+      source: "Amazon",
+      price: 1999,
+      rating: 4.5,
+    },
+    {
+      source: "Flipkart",
+      price: 1899,
+      rating: 4.6,
+    },
+    {
+      source: "Meesho",
+      price: 1799,
+      rating: 4.4,
+    },
+    {
+      source: "Local Business",
+      price: 1750,
+      rating: 4.9,
+    },
+  ]);
+
+  const bestDeal = products.reduce((prev, curr) =>
+    curr.price < prev.price ? curr : prev
+  );
+
   return (
-    <main className="min-h-screen bg-slate-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-5xl font-bold mb-3">
-          Compare Products
+    <div className="min-h-screen bg-slate-100 p-10">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8">
+          Product Comparison
         </h1>
 
-        <p className="text-gray-500 mb-10">
-          Compare products side by side and make smarter decisions.
-        </p>
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-indigo-600 text-white">
+              <tr>
+                <th className="p-4 text-left">Platform</th>
+                <th className="p-4 text-left">Price</th>
+                <th className="p-4 text-left">Rating</th>
+              </tr>
+            </thead>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">
-              Wireless Earbuds
-            </h2>
+            <tbody>
+              {products.map((product, index) => (
+                <tr
+                  key={index}
+                  className="border-b hover:bg-slate-50"
+                >
+                  <td className="p-4">{product.source}</td>
+                  <td className="p-4">₹{product.price}</td>
+                  <td className="p-4">
+                    ⭐ {product.rating}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-            <p>💰 ₹1999</p>
-            <p>⭐ 4.7</p>
-            <p>🏪 Tech World</p>
-            <p>📂 Electronics</p>
-          </div>
+        <div className="mt-8 bg-green-100 border border-green-300 rounded-xl p-6">
+          <h2 className="text-2xl font-bold text-green-700">
+            🏆 Best Deal
+          </h2>
 
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">
-              Leather Wallet
-            </h2>
+          <p className="mt-2">
+            {bestDeal.source} - ₹{bestDeal.price}
+          </p>
 
-            <p>💰 ₹799</p>
-            <p>⭐ 4.6</p>
-            <p>🏪 Urban Accessories</p>
-            <p>📂 Fashion</p>
-          </div>
+          <p>
+            Rating: ⭐ {bestDeal.rating}
+          </p>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -1,23 +1,33 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "http://localhost:8000";
 
 export async function getProducts() {
-  const response = await fetch(`${API_URL}/products`);
+  const res = await fetch(`${API_URL}/products`);
 
-  if (!response.ok) {
+  if (!res.ok) {
     throw new Error("Failed to fetch products");
   }
 
-  return response.json();
+  return res.json();
 }
 
-export async function getLocalBusinesses() {
-  const response = await fetch(`${API_URL}/local-businesses`);
+export async function getProduct(id: string) {
+  const res = await fetch(`${API_URL}/products/${id}`);
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch local businesses");
+  if (!res.ok) {
+    throw new Error("Failed to fetch product");
   }
 
-  return response.json();
+  return res.json();
 }
 
-export { API_URL };
+export async function searchProducts(query: string) {
+  const res = await fetch(
+    `${API_URL}/search?query=${encodeURIComponent(query)}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to search products");
+  }
+
+  return res.json();
+}
